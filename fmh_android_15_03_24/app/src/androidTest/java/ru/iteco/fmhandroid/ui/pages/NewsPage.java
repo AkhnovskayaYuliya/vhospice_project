@@ -10,7 +10,6 @@ import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.espresso.ViewInteraction;
 
-
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.DataHelper.DataHelper;
 

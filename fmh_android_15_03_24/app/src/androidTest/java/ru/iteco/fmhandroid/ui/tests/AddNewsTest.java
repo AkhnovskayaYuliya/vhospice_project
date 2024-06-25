@@ -1,46 +1,27 @@
 package ru.iteco.fmhandroid.ui.tests;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
-import static org.hamcrest.Matchers.allOf;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.DataHelper.DataHelper;
 import ru.iteco.fmhandroid.ui.pages.AddNewsPage;
-import ru.iteco.fmhandroid.ui.pages.AuthPage;
-import ru.iteco.fmhandroid.ui.pages.ControlPanelPage;
-import ru.iteco.fmhandroid.ui.pages.MainPage;
-import ru.iteco.fmhandroid.ui.pages.NewsPage;
 import ru.iteco.fmhandroid.ui.steps.AddNewsSteps;
 import ru.iteco.fmhandroid.ui.steps.AuthSteps;
 import ru.iteco.fmhandroid.ui.steps.ControlPanelSteps;
-import ru.iteco.fmhandroid.ui.steps.EditNewsSteps;
 import ru.iteco.fmhandroid.ui.steps.MainPageSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsPageSteps;
-import ru.iteco.fmhandroid.ui.steps.ToolsSteps;
 
 
 @RunWith(AndroidJUnit4.class)
 public class AddNewsTest {
-    AuthPage authPage = new AuthPage();
     DataHelper dataHelper = new DataHelper();
-
     AddNewsPage addNews = new AddNewsPage();
     ControlPanelSteps controlPanelSteps = new ControlPanelSteps();
     AuthSteps authSteps = new AuthSteps();

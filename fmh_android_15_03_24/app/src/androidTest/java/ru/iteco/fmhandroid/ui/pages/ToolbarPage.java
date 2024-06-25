@@ -3,7 +3,7 @@ package ru.iteco.fmhandroid.ui.pages;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.espresso.ViewInteraction;
 

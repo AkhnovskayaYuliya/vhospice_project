@@ -5,7 +5,6 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 import io.qameta.allure.kotlin.Allure;
-import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.ui.pages.AboutApplicationPage;
 
 public class AboutAppSteps {
@@ -22,5 +21,5 @@ public class AboutAppSteps {
         Allure.step("Нажатие на кнопку 'Назад'");
         aboutApp.backButton.perform(click());
     }
-
 }
+

@@ -1,17 +1,13 @@
 package ru.iteco.fmhandroid.ui.DataHelper;
 
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
-
 import static org.hamcrest.Matchers.equalTo;
 
 import android.os.IBinder;
@@ -68,6 +64,7 @@ public class DataHelper {
             return password;
         }
     }
+
     public User validUser() {
         return new User("login2", "password2");
     }
@@ -77,7 +74,6 @@ public class DataHelper {
     }
 
     public class ToastMatcher extends TypeSafeMatcher<Root> {
-
         @Override
         public void describeTo(Description description) {
             description.appendText("is toast");
@@ -98,7 +94,7 @@ public class DataHelper {
     public void checkToast(String text) {
         Allure.step("Проверка Toast");
         onView(withText(text))
-                .inRoot(new DataHelper.ToastMatcher())
+                .inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
     }
 
@@ -146,9 +142,8 @@ public class DataHelper {
         }));
         return dates;
     }
-    public  Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
 
+    public Matcher<View> childAtPosition(final Matcher<View> parentMatcher, final int position) {
         return new TypeSafeMatcher<View>() {
             @Override
             public void describeTo(Description description) {
@@ -165,13 +160,13 @@ public class DataHelper {
         };
     }
 
-
     public void selectCategory(String category) {
         Allure.step("Выбор категории");
         onView(ViewMatchers.withText(category))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .perform(click());
     }
+
     public boolean isViewDisplayed(int viewId) {
         try {
             onView(withId(viewId)).check(matches(isDisplayed()));
@@ -180,9 +175,11 @@ public class DataHelper {
             return false;
         }
     }
+
     public class News {
         private String title;
         private String description;
+
         public News(String title, String description) {
             this.title = title;
             this.description = description;
@@ -196,6 +193,7 @@ public class DataHelper {
             return description;
         }
     }
+
     public News cyrillic() {
         return new News("какое-то название", "какое-то описание");
     }
@@ -203,16 +201,18 @@ public class DataHelper {
     public News latin() {
         return new News("some title", "some description");
     }
+
     public News specialSymbols() {
-        return new News ("123   &&&", "1224   *%$");
+        return new News("123   &&&", "1224   *%$");
     }
+
     public void setDateInDatePicker() {
-            LocalDate tomorrow = LocalDate.now().plusDays(1);
-            int year = tomorrow.getYear();
-            int month = tomorrow.getMonthValue();
-            int day = tomorrow.getDayOfMonth();
-            onView(withClassName(equalTo(DatePicker.class.getName())))
-                    .perform(PickerActions.setDate(year, month, day));
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        int year = tomorrow.getYear();
+        int month = tomorrow.getMonthValue();
+        int day = tomorrow.getDayOfMonth();
+        onView(withClassName(equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(year, month, day));
     }
 
     public void resultOfFilter() {
@@ -223,6 +223,7 @@ public class DataHelper {
                     .check(matches(isDisplayed()));
         }
     }
+
     public static ViewAction waitForElement(final Matcher matcher, final long millis) {
         return new ViewAction() {
             @Override
@@ -253,7 +254,6 @@ public class DataHelper {
 
                         uiController.loopMainThreadForAtLeast(100);
                     }
-
                 }
                 while (System.currentTimeMillis() < endTime);
 
@@ -264,8 +264,8 @@ public class DataHelper {
                         .build();
             }
         };
-
     }
+
     public static void waitingElement(Matcher matcher, int millis) {
         onView(isRoot()).perform(waitForElement(matcher, millis));
     }

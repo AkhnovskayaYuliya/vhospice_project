@@ -4,16 +4,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import static org.hamcrest.Matchers.allOf;
-
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.test.espresso.ViewInteraction;
-
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.DataHelper.DataHelper;
