@@ -24,6 +24,7 @@ import androidx.test.espresso.PerformException;
 import androidx.test.espresso.Root;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.matcher.RootMatchers;
@@ -205,6 +206,16 @@ public class DataHelper {
     public News specialSymbols() {
         return new News("123   &&&", "1224   *%$");
     }
+    public News latinEdit() {
+        return new News("some title he", "some description he");
+    }
+    public News cyrillicEdit() {
+        return new News("какое-то название 1", "какое-то описание 2");
+    }
+    public News specialSymbolsEdit() {
+        return new News("123   &&&4738", "1224   *%$48765");
+    }
+
 
     public void setDateInDatePicker() {
         LocalDate tomorrow = LocalDate.now().plusDays(1);
@@ -215,13 +226,35 @@ public class DataHelper {
                 .perform(PickerActions.setDate(year, month, day));
     }
 
-    public void resultOfFilter() {
+public void resultOfFilter() {
+        Allure.step("Проверка результата фильтрации");
+    int itemCount = getRecyclerViewItemCount(R.id.news_list_recycler_view);
+
+    if (itemCount > 0) {
         onView(withId(R.id.news_list_recycler_view))
-                .check(matches(isDisplayed()));
-        if (!isViewDisplayed(R.id.news_list_recycler_view)) {
-            onView(withId(R.id.control_panel_news_retry_material_button))
-                    .check(matches(isDisplayed()));
-        }
+                .check(matches(ViewMatchers.isDisplayed()));
+    } else {
+        onView(withId(R.id.control_panel_news_retry_material_button))
+                .check(matches(ViewMatchers.isDisplayed()));
+    }
+}
+
+    private int getRecyclerViewItemCount(int recyclerViewId) {
+        final int[] itemCount = {0};
+        onView(withId(recyclerViewId)).check(new ViewAssertion() {
+            @Override
+            public void check(View view, NoMatchingViewException noViewFoundException) {
+                if (noViewFoundException != null) {
+                    throw noViewFoundException;
+                }
+                RecyclerView recyclerView = (RecyclerView) view;
+                RecyclerView.Adapter adapter = recyclerView.getAdapter();
+                if (adapter != null) {
+                    itemCount[0] = adapter.getItemCount();
+                }
+            }
+        });
+        return itemCount[0];
     }
 
     public static ViewAction waitForElement(final Matcher matcher, final long millis) {

@@ -2,14 +2,16 @@ package ru.iteco.fmhandroid.ui.tests;
 
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
+import io.qameta.allure.kotlin.Description;
+import io.qameta.allure.kotlin.Epic;
+import io.qameta.allure.kotlin.Story;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 import ru.iteco.fmhandroid.ui.steps.AuthSteps;
@@ -17,7 +19,8 @@ import ru.iteco.fmhandroid.ui.steps.MainPageSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsPageSteps;
 import ru.iteco.fmhandroid.ui.steps.ToolsSteps;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
+@Epic("Тестирование навигации")
 
 public class NavigationTest {
 
@@ -47,6 +50,8 @@ public class NavigationTest {
 
 //TC-89. Переход на вкладку "Главная" с помощью нажатия кнопки "Главная"
     @Test
+    @Story("TC-89")
+    @Description("Переход на вкладку 'Главная' с помощью нажатия кнопки 'Главная'")
     public void tc_89() {
         mainPageSteps.clickAllNewsButton();
         toolsSteps.clickNavigationButton();
@@ -55,6 +60,8 @@ public class NavigationTest {
     }
 //TC-90. Переход на вкладку "Новости" при нажатии на кнопку "Новости"
     @Test
+    @Story("TC-90")
+    @Description("Переход на вкладку 'Новости' при нажатии на кнопку 'Новости'")
     public void tc_90() {
         toolsSteps.clickNavigationButton();
         toolsSteps.clickNews();
